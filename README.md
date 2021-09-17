@@ -13,7 +13,7 @@ npm install
 ### Development server
 
 ```bash
-npm start
+npm run start
 ```
 
 View development server at `localhost:8080`.
