@@ -1,8 +1,9 @@
+const Webpack = require('webpack')
+const { merge } = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const { merge } = require('webpack-merge')
 const paths = require('./paths')
-const common = require('./webpack.common.js')
+const common = require('./webpack.common')
 
 module.exports = merge(common, {
   mode: 'production',
@@ -10,12 +11,20 @@ module.exports = merge(common, {
   output: {
     path: paths.build,
     publicPath: '/',
-    filename: 'js/[name].[contenthash].bundle.js',
+    filename: '[name].js',
   },
+  plugins: [
+    new Webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+  ],
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
+        test: /\.s?css$/i,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -31,12 +40,6 @@ module.exports = merge(common, {
       },
     ],
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash].css',
-      chunkFilename: '[id].css',
-    }),
-  ],
   optimization: {
     minimize: true,
     minimizer: [new CssMinimizerPlugin(), '...'],

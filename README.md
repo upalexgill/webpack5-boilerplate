@@ -23,3 +23,13 @@ View development server at `localhost:8080`.
 ```bash
 npm run build
 ```
+
+### Lint
+
+```bash
+npm run lint // Styles and Scripts
+npm run lint:styles
+npm run lint:styles:fix
+npm run lint:scripts
+npm run lint:scripts:fix
+```

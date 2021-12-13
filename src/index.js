@@ -1,2 +1,2 @@
-import '@/js/scripts'
-import '@/css/index.scss'
+import './scripts/index'
+import './styles/index.scss'

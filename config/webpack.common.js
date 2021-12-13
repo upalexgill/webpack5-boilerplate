@@ -1,7 +1,6 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const PrettierPlugin = require('prettier-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const paths = require('./paths')
 
@@ -9,7 +8,7 @@ module.exports = {
   entry: [paths.src + '/index.js'],
   output: {
     path: paths.build,
-    filename: '[name].bundle.js',
+    filename: '[name].js',
     publicPath: '/',
   },
   plugins: [
@@ -19,23 +18,16 @@ module.exports = {
         {
           from: paths.public,
           to: 'assets',
-          globOptions: {
-            ignore: ['*.DS_Store'],
-          },
           noErrorOnMissing: true,
         },
       ],
     }),
     new HtmlWebpackPlugin({
-      title: 'webpack Boilerplate',
       template: paths.src + '/index.html',
-      filename: 'index.html',
     }),
     new ESLintPlugin({
-      files: ['.', 'src', 'config'],
-      formatter: 'table',
+      files: ['src/scripts/*.js'],
     }),
-    new PrettierPlugin(),
   ],
   module: {
     rules: [
@@ -45,10 +37,8 @@ module.exports = {
     ],
   },
   resolve: {
-    modules: [paths.src, 'node_modules'],
-    extensions: ['.js', '.jsx', '.json'],
     alias: {
-      '@': paths.src,
+      '~': paths.src,
     },
   },
 }

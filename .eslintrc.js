@@ -1,4 +1,4 @@
-{
+module.exports = {
   "ignorePatterns": ["dist", "node_modules"],
   "rules": {
     "max-len": [
@@ -22,7 +22,7 @@
     "camelcase": 1,
     "no-new-wrappers": 1,
     "no-nested-ternary": 1,
-    "no-console": 1,
+    "no-console": process.env.NODE_ENV === "production" ? 2 : 0,
     "no-template-curly-in-string": 1,
     "no-self-compare": 1,
     "import/prefer-default-export": 0,

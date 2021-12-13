@@ -1,23 +1,31 @@
-const webpack = require('webpack')
+const Webpack = require('webpack')
 const { merge } = require('webpack-merge')
-const common = require('./webpack.common.js')
-const paths = require('./paths')
+const StylelintPlugin = require('stylelint-webpack-plugin')
+const common = require('./webpack.common')
 
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
+    watchFiles: ["./src/**/*"],
     historyApiFallback: true,
-    contentBase: paths.build,
     open: true,
     compress: true,
     hot: true,
     port: 8080,
   },
+  plugins: [
+    new Webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
+    new StylelintPlugin({
+      files: ['**/*.s?(a|c)ss'],
+    }),
+  ],
   module: {
     rules: [
       {
-        test: /\.(scss|css)$/,
+        test: /\.s?css$/i,
         use: [
           'style-loader',
           {
@@ -29,7 +37,4 @@ module.exports = merge(common, {
       },
     ],
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-  ],
 })
