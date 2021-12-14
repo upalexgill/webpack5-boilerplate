@@ -10,6 +10,7 @@ module.exports = {
     path: paths.build,
     filename: '[name].js',
     publicPath: '/',
+    assetModuleFilename: '[path][name].[hash][ext][query]'
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -39,6 +40,7 @@ module.exports = {
   resolve: {
     alias: {
       '~': paths.src,
+      assets: paths.public,
     },
   },
 }

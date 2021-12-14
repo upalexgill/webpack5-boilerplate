@@ -32,7 +32,7 @@ module.exports = merge(common, {
             options: {
               importLoaders: 2,
               sourceMap: false,
-              modules: true,
+              modules: false,
             },
           },
           'sass-loader',
