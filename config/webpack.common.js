@@ -10,16 +10,15 @@ module.exports = {
     path: paths.build,
     filename: '[name].js',
     publicPath: '/',
-    assetModuleFilename: '[path][name].[hash][ext][query]'
+    assetModuleFilename: 'src/images/[name].[ext]'
   },
   plugins: [
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: paths.public,
-          to: 'assets',
-          noErrorOnMissing: true,
+          from: paths.src + '/images',
+          to: 'images',
         },
       ],
     }),
@@ -40,7 +39,6 @@ module.exports = {
   resolve: {
     alias: {
       '~': paths.src,
-      assets: paths.public,
     },
   },
 }
