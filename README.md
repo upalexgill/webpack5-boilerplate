@@ -2,6 +2,14 @@
 
 Babel and Sass with dev server and an optimized production build.
 
+## Prerequisites
+Your node version needs a minimum of 12.20.
+To upgrade your node.
+
+```bash
+npm install node@12.20.0 -g
+```
+
 ## Installation
 
 ```bash

@@ -8,7 +8,7 @@ module.exports = {
   entry: [paths.src + '/index.js'],
   output: {
     path: paths.build,
-    filename: '[name].js',
+    filename: '[name].bundle.js',
     publicPath: '/',
     assetModuleFilename: 'src/images/[name].[ext]'
   },
@@ -19,6 +19,7 @@ module.exports = {
         {
           from: paths.src + '/images',
           to: 'images',
+          noErrorOnMissing: true
         },
       ],
     }),
