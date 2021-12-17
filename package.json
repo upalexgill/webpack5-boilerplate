@@ -1,6 +1,6 @@
 {
   "name": "webpack5-boilerplate",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Babel and SASS with a dev server and an optimized production build.",
   "main": "index.js",
   "scripts": {
